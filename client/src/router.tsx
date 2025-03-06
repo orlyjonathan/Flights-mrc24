@@ -8,7 +8,7 @@ import FlightActions from './view/pages/company/flightActions/FlightActions';
 import AddFlightForm from './view/pages/setFlights/AddFlightForm';
 import Home from './view/pages/Home/Home';
 import FlightSearchResults from './view/pages/FlightSearchResults/FlightSearchResults';
-import UpdateFlightForm from './view/pages/setFlights/UpdateFlightForm';
+
 
 
 
@@ -67,23 +67,7 @@ export const router = createBrowserRouter([
 				onCancel={() => console.log('Cancel button clicked')} />,
             },
 
-			{
-				path: 'update-flight/:flightId',
-				element: <UpdateFlightForm
-				flight={{
-					flight_id: 1,
-					airplane_id: 1,
-					departure_date: '2023-03-01',
-					departure_time: '08:00',
-					arrival_time: '10:00',
-					price: 100,
-					origin: 'New York',
-					destination: 'Los Angeles',
-				  }}
-				onSubmit={(flightData) => console.log(flightData)} 
-				onCancel={() => console.log('Cancel button clicked')} />,
-			},
-
+		
 		],
 	},
 ]);

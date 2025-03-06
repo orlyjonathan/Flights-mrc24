@@ -16,11 +16,28 @@ const UpdateFlightForm: React.FC<UpdateFlightFormProps> = ({ flight, close, hand
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const updatedData = { ...formData };
-        console.log(updatedData)
-        if (flight) handleUpdate(flight?.flight_id, updatedData);
+    
+        if (!flight || !flight.flight_id) {
+            console.error("Invalid flight data.");
+            return;
+        }
+    
+        // Filter out unchanged fields
+        const updatedData = Object.fromEntries(
+            Object.entries(formData).filter(([key, value]) => value !== flight[key as keyof Flight])
+        );
+    
+        if (Object.keys(updatedData).length === 0) {
+            console.log("No changes detected.");
+            close();
+            return;
+        }
+    
+        console.log("Submitting update:", updatedData);
+        handleUpdate(flight.flight_id, updatedData);
         close();
     };
+    
 
     if (!flight) return null;
 
